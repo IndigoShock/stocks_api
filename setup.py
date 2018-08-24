@@ -12,6 +12,7 @@ requires = [
     'plaster_pastedeploy',
     'pyramid >= 1.9a',
     'pyramid_debugtoolbar',
+    'pyramid-restful-framework',  # installed by us
     'pyramid_jinja2',
     'pyramid_retry',
     'pyramid_tm',
