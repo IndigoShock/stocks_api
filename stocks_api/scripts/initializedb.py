@@ -33,13 +33,18 @@ def main(argv=sys.argv):
     setup_logging(config_uri)
     settings = get_appsettings(config_uri, options=options)
 
+    # Create a connection(engine) to the DB
     engine = get_engine(settings)
+
+    # Creates tables for our models in the DB
     Base.metadata.create_all(engine)
 
-    session_factory = get_session_factory(engine)
+    # Below used for seeding DB
 
-    with transaction.manager:
-        dbsession = get_tm_session(session_factory, transaction.manager)
+    # session_factory = get_session_factory(engine)
 
-        model = MyModel(name='one', value=1)
-        dbsession.add(model)
+    # with transaction.manager:
+    #     dbsession = get_tm_session(session_factory, transaction.manager)
+
+    #     model = MyModel(name='one', value=1)
+    #     dbsession.add(model)
