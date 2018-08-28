@@ -12,7 +12,7 @@ import json
 def lookup(request):
     """
     """
-    url = 'https://api.openweathermap.org/data/2.5/weather?zip={}&APPID={}'.format(
+    url = 'https://api.iextrading.com/1.0'.format(
         requests.matchdict['zip_code'],
         '(API_KEY)',
     )
@@ -30,8 +30,8 @@ class StockAPIViewset(APIViewSet):
         except json.JSONDecodeError as e:
             return Response(json=e.msg, status=400)
 
-        if 'zip_code' not in kwargs:
-            return Response(json='Expected value; zip_code', status=400)
+        if 'stocks' not in kwargs:
+            return Response(json='Expected value; stocks', status=400)
 
         try:
             stocks = StocksPortfolio.new(request, **kwargs)
