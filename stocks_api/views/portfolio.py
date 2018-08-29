@@ -14,7 +14,6 @@ def lookup(request):
     """
     url = 'https://api.iextrading.com/1.0'.format(
         requests.matchdict['symbol'],
-        '(API_KEY)',
         '''for the time: GET /stock/{symbol}/time-series'''
         '''for the company: GET /stock/{symbol}/company'''
     )
