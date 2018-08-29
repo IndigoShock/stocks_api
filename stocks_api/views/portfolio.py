@@ -2,8 +2,8 @@ from pyramid_restful.viewsets import APIViewSet
 from pyramid.response import Response
 from pyramid.view import view_config
 from sqlalchemy.exc import IntegrityError, DataError
-from ..models.schemas import StocksPortfolioSchema
-from ..models import StocksPortfolio
+from ..models.schemas import PortfolioSchema
+from ..models import Portfolio
 import requests
 import json
 
@@ -35,12 +35,12 @@ class StockAPIViewset(APIViewSet):
             return Response(json='Expected value; stocks', status=400)
 
         try:
-            stocks = StocksPortfolio.new(request, **kwargs)
+            stocks = Portfolio.new(request, **kwargs)
         except IntegrityError:
             return Response(
                 json='Duplicate Key Error. Stock already exists', status=409)
 
-        schema = StocksPortfolioSchema()
+        schema = PortfolioSchema()
         data = schema.dump(stocks).data
 
         return Response(json=data, status=201)
@@ -70,7 +70,7 @@ class StockAPIViewset(APIViewSet):
             return Response(json='Not Found', status=404)
 
         try:
-            StocksPortfolio.remove(request=request, pk=id)
+            Portfolio.remove(request=request, pk=id)
         except (DataError, AttributeError):
             return Response(json='Not Found', status=404)
 
@@ -90,12 +90,12 @@ class PortfolioAPIViewset(APIViewSet):
             return Response(json='Expected value; stocks', status=400)
 
         try:
-            stocks = StocksPortfolio.new(request, **kwargs)
+            stocks = Portfolio.new(request, **kwargs)
         except IntegrityError:
             return Response(
                 json='Duplicate Key Error. Stock already exists', status=409)
 
-        schema = StocksPortfolioSchema()
+        schema = PortfolioSchema()
         data = schema.dump(stocks).data
 
         return Response(json=data, status=201)
@@ -125,7 +125,7 @@ class PortfolioAPIViewset(APIViewSet):
             return Response(json='Not Found', status=404)
 
         try:
-            StocksPortfolio.remove(request=request, pk=id)
+            Portfolio.remove(request=request, pk=id)
         except (DataError, AttributeError):
             return Response(json='Not Found', status=404)
 
@@ -145,12 +145,12 @@ class CompanyAPIViewset(APIViewSet):
             return Response(json='Expected value; stocks', status=400)
 
         try:
-            stocks = StocksPortfolio.new(request, **kwargs)
+            stocks = Portfolio.new(request, **kwargs)
         except IntegrityError:
             return Response(
                 json='Duplicate Key Error. Stock already exists', status=409)
 
-        schema = StocksPortfolioSchema()
+        schema = PortfolioSchema()
         data = schema.dump(stocks).data
 
         return Response(json=data, status=201)
@@ -180,7 +180,7 @@ class CompanyAPIViewset(APIViewSet):
             return Response(json='Not Found', status=404)
 
         try:
-            StocksPortfolio.remove(request=request, pk=id)
+            Portfolio.remove(request=request, pk=id)
         except (DataError, AttributeError):
             return Response(json='Not Found', status=404)
 
