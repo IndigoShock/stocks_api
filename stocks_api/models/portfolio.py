@@ -1,4 +1,4 @@
-from sqlalchemy import relationship
+from sqlalchemy.orm import relationship
 from datetime import datetime as dt
 from sqlalchemy.exc import DBAPIError
 from sqlalchemy import (
@@ -14,7 +14,7 @@ from sqlalchemy import (
 from .meta import Base
 
 
-class StocksPortfolio(Base):
+class Portfolio(Base):
     __tablename__ = 'portfolio'
     id = Column(Integer, primary_key=True)
     name = Column(Text)
@@ -23,7 +23,7 @@ class StocksPortfolio(Base):
     date_updated = Column(DateTime, default=dt.now(), onupdate=dt.now())
 
     account_id = Column(Integer, ForeignKey('accounts.id'), nullable=False)
-    account = relationship('Account', back_populates='location')
+    accounts = relationship('Account', back_populates='portfolio')
 
     @classmethod
     def new(cls, request, **kwargs):

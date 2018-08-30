@@ -5,8 +5,16 @@ name = "pypi"
 
 [packages]
 stocks-api = {editable = true, path = ".", extras = ["testing"]}
+pyramid-restful-framework = "*"
+requests = "*"
+marshmallow-sqlalchemy = "*"
+"psycopg2-binary" = "*"
+cryptacular = "*"
+pyramid-jwt = "*"
 
 [dev-packages]
+requests = "*"
+gunicorn = "*"
 
 [requires]
 python_version = "3.7"
