@@ -20,6 +20,10 @@ from ..models import Portfolio, Stock, Account, AccountRole
 
 
 def usage(argv):
+    """this is for usage when the server is running. Once server is running,
+    type in the config uri and value in the terminal. In this case,
+    pserve .development.ini.
+    """
     cmd = os.path.basename(argv[0])
     print('usage: %s <config_uri> [var=value]\n'
           '(example: "%s development.ini")' % (cmd, cmd))
@@ -27,6 +31,10 @@ def usage(argv):
 
 
 def main(argv=sys.argv):
+    """this is the main method which takes in the system argument.
+    This will parse the variables and config uri. And create a session.
+    Based on the user, it will also assign a role, which is admin.
+    """
     if len(argv) < 2:
         usage(argv)
     config_uri = argv[1]

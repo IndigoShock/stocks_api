@@ -21,6 +21,10 @@ manager = bcrypt.BCRYPTPasswordManager()
 
 
 class Account(Base):
+    """This is for the Accounts table in the database, which will
+    give the id, email and password, portfolio and roles. The date
+    created and updated will also show upon creation of an account.
+    """
     __tablename__ = 'accounts'
     id = Column(Integer, primary_key=True)
     email = Column(String(255), nullable=False, unique=True)
@@ -33,6 +37,8 @@ class Account(Base):
     date_updated = Column(DateTime, default=dt.now(), onupdate=dt.now())
 
     def __init__(self, email=None, password=None):
+        """Requires email and password, which will encode up to 10
+        """
         self.email = email
         self.password = manager.encode(password, 10)  # unsafe
 
@@ -58,11 +64,17 @@ class Account(Base):
 
     @classmethod
     def one(cls, request, email=None):
+        """This will show one account based on the email
+        """
         return request.dbsession.query(cls).filter(
             cls.email == email).one_or_none()
 
     @classmethod
     def check_credentials(cls, request, email, password):
+        """This will check the credentials of a specific account based on their email,
+        and password. If it doesn't find it, then error thrown. Otherwise, it will check
+        and say whether both are correct or not.
+        """
         if request.dbsession is None:
             raise DBAPIError
 

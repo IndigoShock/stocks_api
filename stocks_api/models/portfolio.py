@@ -15,6 +15,11 @@ from .meta import Base
 
 
 class Portfolio(Base):
+    """This is for the portfolio table in the database. Which will give the id,
+    name, date created and updated. The account id and accounts are also shown
+    and assigned foreign keys. This is to separate portfolio from the stock 
+    table.
+    """
     __tablename__ = 'portfolio'
     id = Column(Integer, primary_key=True)
     name = Column(Text)
@@ -27,6 +32,10 @@ class Portfolio(Base):
 
     @classmethod
     def new(cls, request, **kwargs):
+        """this is upon creation of a new entry in the database based on the keyword,
+        portfolio. If no request, throw exception. If found via keyword, add 
+        to the portfolio table.
+        """
         if request.dbsession is None:
             raise DBAPIError
 
@@ -39,6 +48,9 @@ class Portfolio(Base):
 
     @classmethod
     def one(cls, request=None, pk=None):
+        """This will find the specific portfolio desired. If no request, then
+        throw error.
+        """
         if request.dbsession is None:
             raise DBAPIError
 

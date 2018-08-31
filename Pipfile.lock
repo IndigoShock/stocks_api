@@ -1,7 +1,7 @@
 {
     "_meta": {
         "hash": {
-            "sha256": "6fcf00f07e3e31ca0f733e99645352f2a558958159a3fda5a76ca8129ea49e0f"
+            "sha256": "f073d684d7aadd4584dc14443d04aea4889a4edf514b4ee789cc58dc9552012a"
         },
         "pipfile-spec": 6,
         "requires": {
@@ -254,7 +254,7 @@
                 "sha256:600f12e0d11211a55c2da970120af33214f77607ed45caba6af6c891afeaa771",
                 "sha256:cf89a48cb899291639686bf3d4a883b39e496151fa4871fb83cc1a3200d5b925"
             ],
-            "markers": "python_version != '3.2.*' and python_version != '3.1.*' and python_version >= '2.7' and python_version != '3.3.*' and python_version != '3.0.*'",
+            "index": "pypi",
             "version": "==1.9.2"
         },
         "pyramid-debugtoolbar": {
