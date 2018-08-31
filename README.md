@@ -12,6 +12,7 @@ Python, VS Code, sqlalchemy, Pyramid framework, cryptacular and psycopg2-binary
 3. Open your Terminal or Git Bash. Start your server by typing in, 
 "pserve development.ini --reload" You should seet he localhost server, 6543 running. 
 Example image below:
+
 ![pserve_running](assets/pserve_running.png)
 4. Once the server is running, open a separate terminal window. And follow the instructions below.
 
