@@ -7,7 +7,13 @@ import json
 
 class AuthAPIViewset(APIViewSet):
     def create(self, request, auth=None):
-        """
+        """this will create the view for the authorization. Once they register, the
+        email and password will be checked. If it does not pass, user will have
+        a bad request. If they do, then they will have a token for the roles
+        based on their email. If they login and are authenticated through
+        their email and password, they will be assigned their role again.
+        Otherwise, they will receive an error of Not Authorized.
+        And beyond not functioning, it will show a Not Found Error.
         """
         data = json.loads(request.body)
 
@@ -45,6 +51,6 @@ class AuthAPIViewset(APIViewSet):
                          )
                     }
                 )
-            return Response(json='Not Autheotized', status=401)
+            return Response(json='Not Authorized', status=401)
 
         return Response(json='Not Found', status=404)

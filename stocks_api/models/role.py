@@ -10,7 +10,9 @@ from sqlalchemy import (
 
 
 class AccountRole(Base):
-    """
+    """this is for the account role table. This is to assign role(s) to a
+    particular account. This will populate the table with the id, name,
+    and accounts.
     """
     __tablename__ = 'account_roles'
     id = Column(Integer, primary_key=True)

@@ -8,22 +8,24 @@ import requests
 import json
 
 
+API_URL = 'https://api.iextrading.com/1.0/'
+
+
 @view_config(route_name='lookup', renderer='json', request_method='GET')
 def lookup(request):
+    """this is the API call that is typed in a separate terminal
     """
-    """
-    url = 'https://api.iextrading.com/1.0'.format(
-        requests.matchdict['symbol'],
-        '''for the time: GET /stock/{symbol}/time-series'''
-        '''for the company: GET /stock/{symbol}/company'''
-    )
-    response = request.get(url)
+    symbol = request.matchdict['symbol']
+    url = f'{API_URL}stock/{symbol}/company'
+    # import pdb; pdb.set_trace()
+    response = requests.get(url)
 
     return Response(json=response.json(), status=200)
 
 
 class StockAPIViewset(APIViewSet):
-    """
+    """this will create the view based on the API call and will return a
+    json object with the information in the database
     """
     def create(self, request):
         try:
@@ -64,7 +66,7 @@ class StockAPIViewset(APIViewSet):
             status=200)
 
     def destroy(self, request, id=None):
-        """
+        """this will destroy the stock view
         """
         if not id:
             return Response(json='Not Found', status=404)
@@ -78,7 +80,8 @@ class StockAPIViewset(APIViewSet):
 
 
 class PortfolioAPIViewset(APIViewSet):
-    """
+    """this will create the view based on the API call and will return a
+    json object with the information in the database
     """
     def create(self, request):
         try:
@@ -133,7 +136,8 @@ class PortfolioAPIViewset(APIViewSet):
 
 
 class CompanyAPIViewset(APIViewSet):
-    """
+    """this will create the view based on the API call and will return a
+    json object with the information in the database
     """
     def create(self, request):
         try:

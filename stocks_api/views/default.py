@@ -4,6 +4,9 @@ from pyramid.view import view_config
 
 @view_config(route_name='home', renderer='json', request_method='GET')
 def home_view(request):
+    """this is the default view, if there was a front end. At the moment,
+    this is for the terminal.
+    """
     message = '''
         GET / - Base API route\n
         POST /api/v1/auth/ - Register a new account\n

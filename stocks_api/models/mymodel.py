@@ -9,6 +9,8 @@ from .meta import Base
 
 
 class MyModel(Base):
+    """This is the basis for how to organize tables in the database
+    """
     __tablename__ = 'models'
     id = Column(Integer, primary_key=True)
     name = Column(Text)
